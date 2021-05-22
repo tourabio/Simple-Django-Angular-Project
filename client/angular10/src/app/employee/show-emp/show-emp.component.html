@@ -1,0 +1,50 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>EmployeeId</th>
+            <th>EmployeeName</th>
+            <th>Department</th>
+            <th>DateOfJoining</th>
+            <th>PhotoFileName</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of employeeList">
+            <td>{{dataItem.EmployeeId}}</td>
+            <td>{{dataItem.EmployeeName}}</td>
+            <td>{{dataItem.Department}}</td>
+            <td>{{dataItem.DateOfJoining}}</td>
+            <td>{{dataItem.PhotoFileName}}</td>
+            <td><button type="button" class="btn btn-warning mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="editClick(dataItem)" data-backdrop="static" data-keyboard="false">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="deleteClick(dataItem)">Delete</button>
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    (click)="addClick()" data-backdrop="static" data-keyboard="false">
+    Add Employee
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeClick()"></button>
+            </div>
+            <div class="modal-body">
+                <app-add-edit-emp [emp]="emp" *ngIf="ActivateAddEditEmpComp"></app-add-edit-emp>
+            </div>
+        </div>
+    </div>
+</div>
